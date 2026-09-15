@@ -34,9 +34,10 @@ function RecipeDetailPage() {
 
   for (let i = 1; i <= 20; i++) {
     const ingredient = recipe?.[`strIngredient${i}`];
+    const measure = recipe?.[`strMeasure${i}`];
 
     if (ingredient) {
-      ingredients.push(ingredient);
+      ingredients.push(`${measure} ${ingredient}`);
     }
   }
   return (
