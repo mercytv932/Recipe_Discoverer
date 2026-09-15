@@ -1,4 +1,5 @@
 import useFetch from "../hooks/useFetch";
+import { Link } from "react-router-dom";
 
 type Category = {
   idCategory: string;
@@ -28,10 +29,13 @@ function HomePage() {
 
       <div>
         {data?.categories?.map((category) => (
-          <div key={category.idCategory}>
+          <Link
+            key={category.idCategory}
+            to={`/category/${category.strCategory}`}
+          >
             <img src={category.strCategoryThumb} alt={category.strCategory} />
             <h3>{category.strCategory}</h3>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
