@@ -1,3 +1,4 @@
+
 function RecipeDetailPage() {
   return <div></div>;
 }

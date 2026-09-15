@@ -1,9 +1,19 @@
-function RecipeCard() {
+import { Link } from "react-router-dom";
+
+type RecipeCardProps = {
+  id: string;
+  name: string;
+  image: string;
+};
+
+function RecipeCard({ id, name, image }: RecipeCardProps) {
   return (
-    <div>
-      <img src="" alt="" />
-      <h3>Food name:{}</h3>
-    </div>
+    <Link to={`/recipe/${id}`}>
+      <div>
+        <img src={image} alt={name} />
+        <h3>{name}</h3>
+      </div>
+    </Link>
   );
 }
 

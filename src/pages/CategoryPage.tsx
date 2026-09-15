@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import RecipeCard from "../components/RecipeCard";
 
 type Recipe = {
   idMeal: string;
@@ -29,10 +30,12 @@ function CategoryPage() {
 
       <div>
         {data?.meals?.map((recipe) => (
-          <div key={recipe.idMeal}>
-            <img src={recipe.strMealThumb} alt={recipe.strMeal} />
-            <h3>{recipe.strMeal}</h3>
-          </div>
+          <RecipeCard
+            key={recipe.idMeal}
+            id={recipe.idMeal}
+            name={recipe.strMeal}
+            image={recipe.strMealThumb}
+          />
         ))}
       </div>
     </div>
