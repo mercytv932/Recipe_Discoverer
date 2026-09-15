@@ -29,6 +29,16 @@ function RecipeDetailPage() {
   }
 
   const recipe = data?.meals?.[0];
+
+  const ingredients = [];
+
+  for (let i = 1; i <= 20; i++) {
+    const ingredient = recipe?.[`strIngredient${i}`];
+
+    if (ingredient) {
+      ingredients.push(ingredient);
+    }
+  }
   return (
     <div>
       <h2>{recipe?.strMeal}</h2>
@@ -37,6 +47,13 @@ function RecipeDetailPage() {
 
       <p>Category: {recipe?.strCategory}</p>
       <p>Area: {recipe?.strArea}</p>
+
+      <h3>Ingredients</h3>
+      <ul>
+        {ingredients.map((ingredient, index) => (
+          <li key={index}>{ingredient}</li>
+        ))}
+      </ul>
     </div>
   );
 }
