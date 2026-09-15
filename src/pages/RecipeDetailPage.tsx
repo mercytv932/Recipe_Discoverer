@@ -1,6 +1,7 @@
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-
+import { FavoritesContext } from "../contexts/FavoritesContext";
 type Recipe = {
   idMeal: string;
   strMeal: string;
@@ -17,6 +18,12 @@ type RecipeResponses = {
 
 function RecipeDetailPage() {
   const { recipeId } = useParams();
+  const favoritesContext = useContext(FavoritesContext);
+
+  const { addFavorite, removeFavorite, isFavorite } = favoritesContext!;
+  const recipeIdNumber = Number(recipeId);
+  const favorite = isFavorite(recipeIdNumber);
+
   const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`;
   const { data, loading, error } = useFetch<RecipeResponses>(url);
 
@@ -45,6 +52,16 @@ function RecipeDetailPage() {
       <h2>{recipe?.strMeal}</h2>
 
       <img src={recipe?.strMealThumb} alt={recipe?.strMeal} />
+
+      <button
+        onClick={() =>
+          favorite
+            ? removeFavorite(recipeIdNumber)
+            : addFavorite(recipeIdNumber)
+        }
+      >
+        {favorite ? "Remove from Favorites" : "Add to Favorites"}
+      </button>
 
       <p>Category: {recipe?.strCategory}</p>
       <p>Area: {recipe?.strArea}</p>
