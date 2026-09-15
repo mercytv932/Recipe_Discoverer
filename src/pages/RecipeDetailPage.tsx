@@ -55,6 +55,9 @@ function RecipeDetailPage() {
           <li key={index}>{ingredient}</li>
         ))}
       </ul>
+
+      <h3>Instructions</h3>
+      <p>{recipe?.strInstructions}</p>
     </div>
   );
 }
